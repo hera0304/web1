@@ -1,4 +1,4 @@
-FORM ubuntu:14.04
+FROM ubuntu:14.04
 MAINTAINER "korea-lee <hyung.lee@ocmkorea.com>"
 LABEL "purpose"="practice"
 RUN apt-get update
