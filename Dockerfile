@@ -1,10 +1,11 @@
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 MAINTAINER "korea-lee <hyung.lee@ocmkorea.com>"
-LABEL "purpose"="practice"
 RUN apt-get update
-RUN apt-get install apache2 -y
-ADD test.html /var/www/html
-WORKDIR /var/www/html
-RUN ["/bin/bash", "-c", "echo hello >> test.html"]
+RUN apt-get install -y nginx
+RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
+RUN chown -R www-data:www-data /var/lib/nginx
+VOLUME ["/data", "/etc/nginx/site-enabled", "/var/log/nginx"]
+WORKDIR /etc/nginx
+CMD ["nginx"]
 EXPOSE 80
-CMD apachectl -D FOREGROUND
+EXPOSE 443
